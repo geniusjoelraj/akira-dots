@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+title=$(playerctl -p spotify metadata | grep title | awk '{print$3" "$4" "$5" "$6" "$7" "$8" "$9" "$10}')
+artist=$(playerctl -p spotify metadata | grep artist | awk '{print$3" "$4" "$5" "$6" "$7" "$8" "$9" "$10}')
+
+if [ $1 == 'title' ]; then
+  echo $title
+elif [ $1 == 'artist' ]; then
+  echo $artist
+else
+  echo ""
+fi

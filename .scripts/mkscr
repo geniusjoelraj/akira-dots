@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+echo "#!/usr/bin/env bash" >"$HOME/.scripts/$1" && chmod +x $HOME/.scripts/$1 && nvim $HOME/.scripts/$1

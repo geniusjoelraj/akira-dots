@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+color=$(python ~/.scripts/main.py)
+
+if [[ $color ]]; then
+  echo "@define-color accent #$color;" >"$HOME/.config/waybar/accent.css"
+  echo "@define-color accent #$color;" >"$HOME/.config/wlogout/accent.css"
+
+  echo "general{ 
+  col.active_border = rgba(${color}ee)
+  col.inactive_border = rgba(${color}55)
+}" >"$HOME/.config/hypr/colors.conf"
+
+fi

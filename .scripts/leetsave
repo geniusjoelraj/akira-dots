@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+args_arr=("$@")
+problem=""
+
+for arg in "${args_arr[@]}"; do
+  problem="${problem} ${arg}"
+done
+
+lower_cased="${problem,,}"
+after_space_remove=$(echo $lower_cased | sed 's/ //')
+after_hyphen=$(echo $after_space_remove | sed 's/ /-/g')
+
+nvim ${after_hyphen}.py

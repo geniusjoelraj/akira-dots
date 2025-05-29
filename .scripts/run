@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+command=$(rofi -dmenu -l -1)
+
+exec $command
