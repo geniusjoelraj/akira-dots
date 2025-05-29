@@ -1,0 +1,64 @@
+@import 'accent.css';
+* {
+	background-image: none;
+	box-shadow: none;
+}
+
+window {
+	background-color: rgba(30, 30, 46, 0.90);
+}
+
+button {
+	border-radius: 0;
+	/* border-color: #cba6f7; */
+	text-decoration-color: #cdd6f4;
+	color: #cdd6f4;
+	background-color: #181825;
+	border-style: none;
+	border-width: 1px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 25%;
+}
+
+button:focus, button:active, button:hover{
+	/* 20% Overlay 2, 80% mantle */
+	background-color: @accent;
+	outline-style: none;
+}
+
+
+#lock {
+    opacity: 0.9;
+    background-image: image(url("./icons/lock_white.png"));
+    border-radius: 10px 0 0 0;
+}
+
+#logout {
+    opacity: 0.9;
+    background-image: image(url("./icons/logout_white.png"));
+}
+
+#suspend {
+    opacity: 0.9;
+    background-image: image(url("./icons/suspend_white.png"));
+    border-radius: 0 10px 0 0;
+}
+
+#hibernate {
+    opacity: 0.9;
+    background-image: image(url("./icons/hibernate_white.png"));
+    border-radius: 0 0 0 10px;
+}
+
+#shutdown {
+    opacity: 0.9;
+    background-image: image(url("./icons/shutdown_white.png"));
+}
+
+#reboot {
+    opacity: 0.9;
+    background-image: image(url("./icons/reboot_white.png"));
+    border-radius: 0 0 10px 0;
+}
+
