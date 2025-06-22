@@ -17,10 +17,12 @@ declare -A color_dict=(
   [blue]="89b4fa"
   [lavender]="b4befe"
 )
+
 color=$(echo $colors | rofi -sep ',' -dmenu)
 hexcode=${color_dict[$color]}
 if [[ $color ]]; then
-  echo "@define-color accent #$hexcode;" >"$HOME/.config/waybar/accent.css"
+  echo "@define-color accent #$hexcode;
+  @define-color waybar_bg $waybar_bg;" >"$HOME/.config/waybar/accent.css"
   echo "@define-color accent #$hexcode;" >"$HOME/.config/wlogout/accent.css"
 
   echo "general{ 

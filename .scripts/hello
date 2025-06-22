@@ -1,1 +1,11 @@
 #!/usr/bin/env bash
+
+if [[ 1==2 ]]; then
+  echo 'false'
+else
+  echo 'true'
+fi
+
+for ((i = 0; i < 110; i++)); do
+  echo "$i"
+done

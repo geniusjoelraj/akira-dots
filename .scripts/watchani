@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+anime=$(ls "$HOME/Media/Anime/" | rofi -dmenu -p "Anime")
+
+if [ -n "$anime" ]; then
+  mpv "$HOME/Media/Anime/$anime"
+fi

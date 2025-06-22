@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+vid=$1
+out=$2
+
+ffmpeg -i $1 -sample_fmt s31 $2
+size=$(du -h $out | awk '{print $1}')
+notify-send "$2 converted successfully" "$size"

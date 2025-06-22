@@ -1,0 +1,8 @@
+[pyprland]
+plugins = ["plugin_name", "other_plugin"]
+
+[plugin_name]
+plugin_option = 42
+
+[plugin_name.another_plugin_option]
+suboption = "config value"

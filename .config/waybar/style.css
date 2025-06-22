@@ -13,7 +13,7 @@
     Arial,
     sans-serif;
   /* background-clip: border-box; */
-  background-color: #1E1E2F;
+  background-color: #1A1B26;
 }
 
 button {
@@ -37,16 +37,19 @@ button {
   color: @peach
 }
 
-#power-profiles-daemon, #idle_inhibitor {
+#power-profiles-daemon,
+#idle_inhibitor {
   font-size: 16px;
 }
 
 #power-profiles-daemon.performance {
   color: @red;
 }
+
 #power-profiles-daemon.balanced {
   color: @accent;
 }
+
 #power-profiles-daemon.power-saver {
   color: @green
 }

@@ -5,7 +5,7 @@
   },
   "logo": {
     "type": "auto",
-    "source": "arch",
+    "source": "auto",
     "width": 35,
     "height": 15,
     "padding": {
@@ -13,9 +13,6 @@
         "left": 0,
         "right": 2
     },
-    "color": {
-        "1": "black",
-    }
     },
     "modules": [
     {

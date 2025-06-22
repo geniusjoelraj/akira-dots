@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+echo "Fairy Tail Episode 89.mp4" | sed -E 's/^(.*) Episode.*/\1/'

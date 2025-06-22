@@ -11,4 +11,4 @@ lower_cased="${problem,,}"
 after_space_remove=$(echo $lower_cased | sed 's/ //')
 after_hyphen=$(echo $after_space_remove | sed 's/ /-/g')
 
-nvim ${after_hyphen}.py
+nvim ~/Code/leetcode/"${after_hyphen}.py"

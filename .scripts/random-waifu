@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+category="${1:-waifu}"
+type="sfw"
+url="https://api.waifu.pics/$type/$category"
+image=$(curl $url | jq -r '.url')
+curl $image -s | kitten icat
+echo $image

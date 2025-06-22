@@ -7,10 +7,10 @@ while true; do
     sleep 240
   elif [[ battery -ge 80 && battery -lt 100 ]]; then
     notify-send -t 5000 "Battery: ${battery}%" -i "eighty-battery"
-    sleep 24000
+    sleep 1000
   elif [[ battery -eq 100 ]]; then
     notify-send -t 20000 "Battery fully charged!" -i "full-battery"
-    sleep 50000
+    sleep 1000
   else
     sleep 120
   fi

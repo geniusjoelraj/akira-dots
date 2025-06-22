@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+clear && pokeshell -b $1 2>/dev/null

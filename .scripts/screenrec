@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+wf-recorder -f "/home/tensai/Videos/Recordings/Recording-$(date +%F_%T).mp4"

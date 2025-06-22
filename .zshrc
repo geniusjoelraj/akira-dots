@@ -1,6 +1,6 @@
 export ZSH="$HOME/.oh-my-zsh"
 
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting poetry)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting )
 
 source $ZSH/oh-my-zsh.sh
 source /usr/share/wikiman/widgets/widget.zsh
@@ -22,6 +22,7 @@ alias lg="lazygit"
 alias t="~/.scripts/timer.sh"
 alias fpclean="flatpak uninstall --unused --delete-data"
 alias clean="yay -Sc"
+alias cn="clear && nitch"
 # alias tldrless='f() { tldr $1 --color always | less -R };f'
 
 
@@ -37,9 +38,13 @@ export EDITOR="nvim"
 export ANI_CLI_DOWNLOAD_DIR="/home/tensai/Media/Anime"
 export HYPRSHOT_DIR="/home/tensai/Pictures/Screenshots" 
 export PATH=/home/tensai/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/rustup/bin:$HOME/.scripts:$HOME/.cargo/bin
+export DOTFILES="/home/tensai/dotfiles/"
+export TESS_DIR="/home/tensai/Code/tess"
+
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
 
 ## API_KEYS
 source "$HOME/.zshrc_api_keys"
+# nitch
