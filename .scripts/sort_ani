@@ -1,3 +1,42 @@
 #!/usr/bin/env bash
 
-echo "Fairy Tail Episode 89.mp4" | sed -E 's/^(.*) Episode.*/\1/'
+episodes=("$HOME/Media/Anime/"*.mp4)
+
+if [[ ${#episodes[@]} -eq 1 && "${episodes[0]}" == "$HOME/Media/Anime/"*.mp4 ]]; then
+  echo -e "\e[32mNothing to sort\e[0m"
+  exit 0
+fi
+
+dirs=("$HOME/Media/Anime/"*/)
+animes=()
+counts=()
+
+for ep in "${dirs[@]}"; do
+  animes+=("$(basename "$ep")")
+done
+
+# printf '%s\n' "${animes[@]}"
+
+for ep in "${episodes[@]}"; do
+  base_name=$(echo "$ep" | sed -E 's/^(.*) Episode.*/\1/') #/home/tensai/Media/Anime/One Piece/
+  anime_name="$(basename "$base_name")"                    #One Piece
+  found=0
+  for i in "${animes[@]}"; do
+    if [[ $i == $anime_name ]]; then
+      # mv "$ep" "$HOME/Media/Anime/$anime_name/"
+      counts+=("$i")
+      found=1
+      break
+    fi
+  done
+
+  if [[ $found -eq 0 ]]; then
+    mkdir "$HOME/Media/Anime/$anime_name"
+    animes+=("$anime_name")
+  fi
+  mv "$ep" "$HOME/Media/Anime/$anime_name"
+done
+
+printf '%s\n' "${counts[@]}" | sort | uniq -c | while read -r c n; do
+  echo -e "\e[31m$n: \e[34m$c eps\e[0m"
+done

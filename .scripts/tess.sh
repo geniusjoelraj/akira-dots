@@ -2,4 +2,5 @@
 
 image=$(grim -g "$(slurp)" - | wl-copy && wl-paste >~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png)
 text=$(tesseract "/home/tensai/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" output)
-wl-copy $(cat "/home/tensai/output.txt")
+wl-copy $(cat "/home/tensai/output.txt") | wl-paste
+#1/usx/bin/env bash
