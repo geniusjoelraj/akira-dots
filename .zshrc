@@ -7,11 +7,19 @@ source /usr/share/wikiman/widgets/widget.zsh
 
 # User configuration
 
+## Export
+export QT_QPA_PLATFORMTHEME=qt5ct
+export EDITOR="nvim"
+export ANI_CLI_DOWNLOAD_DIR="/home/tensai/Media/Anime"
+export HYPRSHOT_DIR="/home/tensai/Pictures/Screenshots" 
+export PATH=/home/tensai/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/rustup/bin:$HOME/.scripts:$HOME/.cargo/bin
+export DOTFILES="/home/tensai/dotfiles/"
+export TESS_DIR="/home/tensai/Code/tess"
+export PYSCRIPT="/home/tensai/.scripts/pyscripts/"
 
 ## Aliases
-
 alias v="nvim"
-alias ani="ani-cli -q 1080p"
+alias ani-cli="ani-cli -q 1080p"
 alias c="clear"
 alias ls="eza --icons=always --git-ignore"
 alias l="eza -alh --icons=always"
@@ -23,23 +31,19 @@ alias t="~/.scripts/timer.sh"
 alias fpclean="flatpak uninstall --unused --delete-data"
 alias clean="yay -Sc"
 alias cn="clear && nitch"
+alias md_prev=""
 # alias tldrless='f() { tldr $1 --color always | less -R };f'
 
 
-# alias functions
+# Alias functions
 nzf() {
   nvim "$(fzf --preview='cat {}')"
 }
 
-##export
+mdprev() {
+  uv run "$PYSCRIPT/render-md/main.py" $1
+}
 
-export QT_QPA_PLATFORMTHEME=qt5ct
-export EDITOR="nvim"
-export ANI_CLI_DOWNLOAD_DIR="/home/tensai/Media/Anime"
-export HYPRSHOT_DIR="/home/tensai/Pictures/Screenshots" 
-export PATH=/home/tensai/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/rustup/bin:$HOME/.scripts:$HOME/.cargo/bin
-export DOTFILES="/home/tensai/dotfiles/"
-export TESS_DIR="/home/tensai/Code/tess"
 
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
@@ -47,4 +51,5 @@ eval "$(starship init zsh)"
 
 ## API_KEYS
 source "$HOME/.zshrc_api_keys"
+source "$HOME/.auto_complete"
 # nitch

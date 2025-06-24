@@ -1,0 +1,24 @@
+# zsh_completions
+
+_escr_completion() {
+  local -a scripts
+  scripts=($HOME/.scripts/*(N:t))
+  _describe 'scripts' scripts
+}
+
+_ani_completion() {
+  local -a animes
+  animes=($HOME/Media/Anime/*(N:t))
+  _describe 'anime names' animes
+}
+
+_md_completion() {
+    local -a md
+    mds=($HOME/Notes/*.md(N:t))
+    mds=(${mds%.md})   
+    _describe 'markdows' mds
+  }
+
+compdef _escr_completion escr
+compdef _ani_completion ani
+compdef _md_completion mdprev
