@@ -2,6 +2,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting )
 
+fpath=($HOME/.zsh_completions $fpath)
 source $ZSH/oh-my-zsh.sh
 source /usr/share/wikiman/widgets/widget.zsh
 
@@ -31,7 +32,7 @@ alias t="~/.scripts/timer.sh"
 alias fpclean="flatpak uninstall --unused --delete-data"
 alias clean="yay -Sc"
 alias cn="clear && nitch"
-alias md_prev=""
+alias hf="history | fzf -e"
 # alias tldrless='f() { tldr $1 --color always | less -R };f'
 
 
@@ -47,6 +48,7 @@ mdprev() {
 
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+bindkey -e
 
 
 ## API_KEYS
