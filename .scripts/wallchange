@@ -1,0 +1,23 @@
+#!/bin/bash
+
+tmpfile=$(mktemp)
+kitty -e yazi ~/Pictures/Wallpapers --chooser-file "$tmpfile"
+wall=$(<"$tmpfile")
+
+if [[ -n "$wall" && -f "$wall" ]]; then
+  echo "$wall" >"$HOME/.current_wallpaper"
+  # bash ~/.scripts/auto_accent
+  # pgrep -x swww-daemon >/dev/null || setsid swww-daemon >/dev/null 2>&1 </dev/null
+  if swww img "$wall" \
+    --resize fit \
+    --transition-type wipe \
+    --transition-fps 59; then # --transition-step 200 \
+    echo "$HOME/Pictures/hyprland-logo.png" "Swww" "Wallpaper changed successfully"
+  else
+    echo "$HOME/Pictures/hyprland-logo-error.png" "Swww" "Failed to apply wallpaper (swww error)"
+  fi
+else
+  echo "$HOME/Pictures/hyprland-logo-error.png" "Swww" "Wallpaper not changed or file not valid"
+fi
+
+accent_fzf

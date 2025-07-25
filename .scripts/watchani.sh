@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-ani-cli --rofi
+ani-cli --tof

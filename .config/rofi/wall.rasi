@@ -1,0 +1,137 @@
+
+configuration {
+    modi:                        "drun";
+    font:                        "NDOT 45 (inspired by NOTHING)";
+    show-icons:                  true;
+    drun-display-format:         "{name}";
+    hover-select:                true;
+    me-select-entry:             "MouseSecondary";
+    me-accept-entry:             "MousePrimary";
+    window-format:               "{w} · {c} · {t}";
+    dpi:                         1;
+}
+
+* {
+    /* Define base colors directly */
+    background-alt:              #2C2C2C; // Buttons background (e.g., a dark gray)
+    selected:                    #8BE9FD; // Button selected (e.g., a vibrant blue)
+    active:                      #8BE9FD; // Window activated (e.g., the same vibrant blue)
+    urgent:                      #8BE9FD; // When hovering the activated window (e.g., the same vibrant blue)
+    text-selected:               #E0E0E0; // Light gray for selected text
+    text-color:                  #E0E0E0; // Light gray for general text
+    border-color:                #6272A4; // Muted blue-purple for borders
+}
+
+
+window {
+    enabled:                     true;
+    fullscreen:                  false;
+    transparency:                "real";
+    cursor:                      "default";
+    spacing:                     0px;
+    border-radius:               5px;
+    location:                    center;
+    anchor:                      center;
+    width:                       75%;
+    background-color:            #0000001a;
+    border:                      2px;
+    border-color:                #FFFFFF10;
+}
+
+mainbox {
+    enabled:                     true;
+    children:                    [ "inputbar", "listview" ];
+    background-color:            transparent;
+}
+
+inputbar {
+    enabled:                     true;
+    text-color:                  @text-color; /* Still uses the alias defined in *{} */
+    background-color:            transparent;
+    padding:                     5px;
+    margin:                      10px;
+    children:                    [ "entry" ];
+}
+
+entry {
+    enabled:                     true;
+    placeholder:                 "TYPE TO SEARCH";
+    padding:                     0px 380px 0px 380px;
+    text-color:                  inherit;
+    background-color:            transparent;
+}
+
+listview {
+    enabled:                     true;
+    columns:                     5; /* Number of elements in a row */
+    lines:                       1; /* One row */
+    padding:                     26px 36px;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical; /* Vertical arrangement */
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;
+
+    background-color:            transparent;
+    spacing:                     20px;
+
+    border:                      0px;
+}
+
+element {
+    enabled:                     true;
+    orientation:                 vertical; /* Vertical arrangement */
+    expand:                      false;
+    spacing:                     0px;
+    padding:                     5px 10px;
+    border-radius:               5px;
+    cursor:                      pointer;
+    background-color:            #00000000;
+}
+
+element normal.normal {
+    background-color:            #3F3F3F; /* Dark gray for normal background */
+    text-color:                  inherit;
+}
+element normal.urgent {
+    background-color:            #00000000;
+    text-color:                  @foreground;
+}
+element normal.active {
+    background-color:            #00000000;
+    text-color:                  @foreground;
+}
+
+element selected.normal {
+    background-color:            #8BE9FD; /* The vibrant blue for selected background */
+    text-color:                  @text-selected;
+}
+element alternate.normal {
+    background-color:            #3F3F3F; /* Dark gray for alternate background */
+    text-color:                  inherit;
+}
+element alternate.urgent {
+    background-color:            #00000000;
+    text-color:                  inherit;
+}
+element alternate.active {
+    background-color:            #00000000;
+    text-color:                  inherit;
+}
+
+element-icon {
+    size:                        50%;
+    cursor:                      inherit;
+    expand:                      false;
+    padding:                     0px;
+    background-color:            #00000000;
+}
+
+element-text {
+    cursor:                      inherit;
+    background-color:            transparent;
+    padding-left:                10px; /* Add padding to the left of the text */
+}
+

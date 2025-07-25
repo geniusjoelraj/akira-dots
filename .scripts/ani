@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# anime=$(ls "$HOME/Media/Anime/" | rofi -dmenu -p "Anime")
-anime=$1
+anime=$(ls "$HOME/Media/Anime/" | tofi --prompt-text="Anime")
+# anime=$1
 
 if [ -n "$anime" ]; then
   mpv "$HOME/Media/Anime/$anime"

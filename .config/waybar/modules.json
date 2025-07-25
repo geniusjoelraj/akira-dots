@@ -290,5 +290,15 @@
     "balanced": " ",
     "power-saver": " "
   }
-}
+},
+  "custom/wallpaper": {
+    "format": "🖼️ {}",
+    "max-length": 25,
+    "interval": 10,
+    "exec": "basename \"$(cat ~/.cache/swww/current_wallpaper 2>/dev/null || echo 'None')\"",
+    "on-click": "~/.config/eww/scripts/toggle_wallpaper_window.sh",
+    "tooltip": true,
+    "tooltip-format": "Current wallpaper: {}\nClick to change wallpaper",
+    "return-type": "text"
+  },
 }

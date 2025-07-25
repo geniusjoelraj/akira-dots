@@ -1,6 +1,6 @@
 export ZSH="$HOME/.oh-my-zsh"
 
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting )
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting uv)
 
 fpath=($HOME/.zsh_completions $fpath)
 source $ZSH/oh-my-zsh.sh
@@ -17,6 +17,8 @@ export PATH=/home/tensai/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr
 export DOTFILES="/home/tensai/dotfiles/"
 export TESS_DIR="/home/tensai/Code/tess"
 export PYSCRIPT="/home/tensai/.scripts/pyscripts/"
+export GEMINI_API_KEY="AIzaSyA94gtqH4vppc131lYc7z34WChWPaeZ5Hc"
+export QML2_IMPORT_PATH=$HOME/.local/share/Quickshell/qml
 
 ## Aliases
 alias v="nvim"
@@ -33,8 +35,17 @@ alias fpclean="flatpak uninstall --unused --delete-data"
 alias clean="yay -Sc"
 alias cn="clear && nitch"
 alias hf="history | fzf -e"
+alias searx-start='docker compose -f /usr/local/searxng-docker/docker-compose.yml up -d'
+alias searx-stop='docker compose -f /usr/local/searxng-docker/docker-compose.yml down -d'
+alias rain="terminal-rain"
+alias font=" fc-list : family | sort | uniq "
+# alias tt="kitty @ set-font-size 16.0 && tt -theme catppuccin; kitty @ set-font-size 10.0"
 # alias tldrless='f() { tldr $1 --color always | less -R };f'
-
+tt() {
+    kitty @ set-font-size 20.0
+    command tt -theme catppuccin "$@" # Use 'command tt' here!
+    kitty @ set-font-size 10.0
+}
 
 # Alias functions
 nzf() {
