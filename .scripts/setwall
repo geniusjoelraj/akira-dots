@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+WALLPAPER_DIR=~/Pictures/Wallpapers/
+SELECTED_WALL=$(hellpaper "$WALLPAPER_DIR")
+
+if [ -z "$SELECTED_WALL" ]; then
+  notify-send "No wallpaper selected."
+  exit 1
+fi
+
+swww img "$SELECTED_WALL" --transition-type wipe
+notify-send "Wallpaper Changed"

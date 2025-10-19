@@ -3,132 +3,143 @@
 ## Author  : Aditya Shakya (adi1090x)
 ## Github  : @adi1090x
 #
-## Applets : Volume
+## Applets : Custom Tools Menu (5 Options)
 
 # Import Current Theme
 source "$HOME"/.config/rofi/applets/shared/theme.bash
 theme="$type/$style"
 
-# Volume Info
-mixer="`amixer info Master | grep 'Mixer name' | cut -d':' -f2 | tr -d \',' '`"
-speaker="`amixer get Master | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]'`"
-mic="`amixer get Capture | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]'`"
+# Current System Info (Can be customized or removed if not needed)
+# Example info - replace with whatever you want to display in the message
+hostname=$(hostname)
+kernel_version=$(uname -r | cut -d'-' -f1)
 
 active=""
 urgent=""
 
-# Speaker Info
-amixer get Master | grep '\[on\]' &>/dev/null
-if [[ "$?" == 0 ]]; then
-	active="-a 1"
-	stext='Unmute'
-	sicon=''
-else
-	urgent="-u 1"
-	stext='Mute'
-	sicon=''
-fi
+# --- ICON AND TEXT CUSTOMIZATION PLACEHOLDERS ---
+# You can change the icons (Unicode or Nerd Font) and the accompanying text here.
 
-# Microphone Info
-amixer get Capture | grep '\[on\]' &>/dev/null
-if [[ "$?" == 0 ]]; then
-    [ -n "$active" ] && active+=",3" || active="-a 3"
-	mtext='Unmute'
-	micon=''
-else
-    [ -n "$urgent" ] && urgent+=",3" || urgent="-u 3"
-	mtext='Mute'
-	micon=''
-fi
+# Option 1: Full Screenshot
+opt1_icon='' # Full Screenshot Icon (Example: Nerd Font fa-solid-camera-retro)
+opt1_text='Full Screenshot'
+
+# Option 2: Partial Screenshot
+opt2_icon='󰹑' # Partial Screenshot Icon (Example: Nerd Font fa-solid-crop)
+opt2_text='Partial Screenshot'
+
+# Option 3: Palette Selector
+opt3_icon='' # Color Palette Icon (Example: Nerd Font fa-solid-palette)
+opt3_text='Palette Selector'
+
+# Option 4: Power Modes Menu
+opt4_icon='' # Power Icon (Example: Nerd Font fa-solid-bolt)
+opt4_text='Power Modes'
+
+# Option 5: Settings (e.g., Volume/Network/General Settings)
+opt5_icon='' # Settings Icon (Example: Nerd Font fa-solid-sliders)
+opt5_text='System Settings'
+
+# --- END CUSTOMIZATION PLACEHOLDERS ---
 
 # Theme Elements
-prompt="S:$stext, M:$mtext"
-mesg="$mixer - Speaker: $speaker, Mic: $mic"
+prompt="Tools Menu"
+mesg="Host: $hostname, Kernel: $kernel_version" # Adjust this message as desired
 
+# Since we only have 5 options, let's adjust the layout variables.
 if [[ "$theme" == *'type-1'* ]]; then
-	list_col='1'
-	list_row='5'
-	win_width='400px'
+  list_col='1'
+  list_row='5'
+  win_width='400px'
 elif [[ "$theme" == *'type-3'* ]]; then
-	list_col='1'
-	list_row='5'
-	win_width='120px'
+  list_col='1'
+  list_row='5'
+  win_width='120px'
 elif [[ "$theme" == *'type-5'* ]]; then
-	list_col='1'
-	list_row='5'
-	win_width='520px'
-elif [[ ( "$theme" == *'type-2'* ) || ( "$theme" == *'type-4'* ) ]]; then
-	list_col='5'
-	list_row='1'
-	win_width='670px'
+  list_col='1'
+  list_row='5'
+  win_width='520px'
+elif [[ ("$theme" == *'type-2'*) || ("$theme" == *'type-4'*) ]]; then
+  list_col='5' # 5 columns
+  list_row='1' # 1 row
+  win_width='670px'
 fi
 
-# Options
-layout=`cat ${theme} | grep 'USE_ICON' | cut -d'=' -f2`
+# Options based on layout preference
+layout=$(cat ${theme} | grep 'USE_ICON' | cut -d'=' -f2)
 if [[ "$layout" == 'NO' ]]; then
-	option_1=" Increase"
-	option_2="$sicon $stext"
-	option_3=" Decrese"
-	option_4="$micon $mtext"
-	option_5=" Settings"
+  option_1="$opt1_icon $opt1_text"
+  option_2="$opt2_icon $opt2_text"
+  option_3="$opt3_icon $opt3_text"
+  option_4="$opt4_icon $opt4_text"
+  option_5="$opt5_icon $opt5_text"
 else
-	option_1=""
-	option_2="$sicon"
-	option_3=""
-	option_4="$micon"
-	option_5=""
+  option_1="$opt1_icon"
+  option_2="$opt2_icon"
+  option_3="$opt3_icon"
+  option_4="$opt4_icon"
+  option_5="$opt5_icon"
 fi
 
 # Rofi CMD
 rofi_cmd() {
-	rofi -theme-str "window {width: $win_width;}" \
-		-theme-str "listview {columns: $list_col; lines: $list_row;}" \
-		-theme-str 'textbox-prompt-colon {str: "";}' \
-		-dmenu \
-		-p "$prompt" \
-		-mesg "$mesg" \
-		${active} ${urgent} \
-		-markup-rows \
-		-theme ${theme}
+  rofi -theme-str "window {width: $win_width;}" \
+    -theme-str "listview {columns: $list_col; lines: $list_row;}" \
+    -theme-str 'textbox-prompt-colon {str: "🛠";}' \
+    -dmenu \
+    -p "$prompt" \
+    -mesg "$mesg" \
+    ${active} ${urgent} \
+    -markup-rows \
+    -theme ${theme}
 }
 
 # Pass variables to rofi dmenu
 run_rofi() {
-	echo -e "$option_1\n$option_2\n$option_3\n$option_4\n$option_5" | rofi_cmd
+  echo -e "$option_1\n$option_2\n$option_3\n$option_4\n$option_5" | rofi_cmd
 }
 
 # Execute Command
 run_cmd() {
-	if [[ "$1" == '--opt1' ]]; then
-		amixer -Mq set Master,0 5%+ unmute
-	elif [[ "$1" == '--opt2' ]]; then
-		amixer set Master toggle
-	elif [[ "$1" == '--opt3' ]]; then
-		amixer -Mq set Master,0 5%- unmute
-	elif [[ "$1" == '--opt4' ]]; then
-		amixer set Capture toggle
-	elif [[ "$1" == '--opt5' ]]; then
-		pavucontrol
-	fi
+  if [[ "$1" == '--opt1' ]]; then
+    # Command for: Full Screenshot
+    # TODO: PLACE YOUR FULL SCREENSHOT COMMAND HERE (e.g., 'scrot', 'flameshot full', etc.)
+    echo "full screenshot command executed"
+  elif [[ "$1" == '--opt2' ]]; then
+    # Command for: Partial Screenshot
+    # TODO: PLACE YOUR PARTIAL/AREA SCREENSHOT COMMAND HERE (e.g., 'scrot -s', 'flameshot gui', etc.)
+    echo "partial screenshot command executed"
+  elif [[ "$1" == '--opt3' ]]; then
+    # Command for: Palette Selector (Color Picker)
+    # TODO: PLACE YOUR COLOR PALETTE/PICKER COMMAND HERE (e.g., 'gpick', 'kcolorchooser', etc.)
+    echo "palette selector command executed"
+  elif [[ "$1" == '--opt4' ]]; then
+    # Command for: Power Modes Menu
+    # TODO: PLACE YOUR POWER MODES/POWER MENU COMMAND HERE (e.g., 'sh ~/.config/rofi/powermenu.sh')
+    echo "power modes menu command executed"
+  elif [[ "$1" == '--opt5' ]]; then
+    # Command for: System Settings
+    # TODO: PLACE YOUR SYSTEM SETTINGS COMMAND HERE (e.g., 'pavucontrol', 'nm-connection-editor', or 'xfce4-settings-manager')
+    echo "system settings command executed"
+  fi
 }
 
 # Actions
 chosen="$(run_rofi)"
 case ${chosen} in
-    $option_1)
-		run_cmd --opt1
-        ;;
-    $option_2)
-		run_cmd --opt2
-        ;;
-    $option_3)
-		run_cmd --opt3
-        ;;
-    $option_4)
-		run_cmd --opt4
-        ;;
-    $option_5)
-		run_cmd --opt5
-        ;;
+$option_1)
+  grim - | wl-copy && wl-paste >~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png | notify-send "Screenshot of whole screen taken" -t 1000 # screenshot of the whole screen
+  ;;
+$option_2)
+  quickshell -c /home/tensai/dotfiles/.config/quickshell/hyprquickshot -n
+  ;;
+$option_3)
+  /home/tensai/.config/rofi/applets/bin/volume.sh
+  ;;
+$option_4)
+  run_cmd --opt4
+  ;;
+$option_5)
+  run_cmd --opt5
+  ;;
 esac
-

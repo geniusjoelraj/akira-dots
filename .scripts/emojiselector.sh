@@ -7,7 +7,7 @@ if pidof rofi > /dev/null; then
 fi
 
 sed '1,/^# # DATA # #$/d' "$0" | \
-rofi -i -dmenu -p "Emoji" | \
+rofi -i -dmenu -p "Emoji" -theme /home/tensai/.local/share/rofi/themes/rofi/launchers/type-1/style-4.rasi | \
 awk '{print $1}' | \
 head -n 1 | \
 tr -d '\n' | \

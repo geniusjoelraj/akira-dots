@@ -9,6 +9,7 @@
 configuration {
 	/*---------- General setting ----------*/
 	modi: "drun,run,filebrowser,window";
+
 	case-sensitive: false;
 	cycle: true;
 	filter: "";
@@ -83,7 +84,7 @@ configuration {
 
 	/*---------- Misc setting ----------*/
 	terminal: "rofi-sensible-terminal";
-	font: "JetBrains Mono 12, Apple Color Emoji 12";
+	font: "JetBrains Mono 10, Apple Color Emoji 10";
 	sort: false;
 	threads: 0;
 	click-to-exit: true;
@@ -180,4 +181,4 @@ configuration {
 */
 }
 
-@theme "/home/tensai/.local/share/rofi/themes/style-4.rasi"
+@theme "/home/tensai/.local/share/rofi/themes/style-2.rasi"

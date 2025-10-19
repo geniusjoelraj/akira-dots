@@ -18,7 +18,7 @@ function send_notification {
   brightness=$(get_brightness)
   # Make the bar with the special character ─ (it's not dash -)
   # https://en.wikipedia.org/wiki/Box-drawing_character
-  bar=$(seq -s "󰝤" 0 $((brightness / 10)) | sed 's/[0-9]//g')
+  bar=$(seq -s "󰝤" 0 $((brightness / 15)) | sed 's/[0-9]//g')
   # Send the notification
   brightness_percent=$(($brightness / 4))
   notify-send "brightness: $brightness_percent%" "$bar" -r 5 -i "brightness" -t 1000

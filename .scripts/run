@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
 
-command=$(rofi -dmenu -l -1)
+# Add your custom scripts folder to PATH
+export PATH="$PATH:$HOME/.scripts"
 
-exec $command
+# Show Rofi prompt
+cmd=$(rofi -dmenu -p "Run:" -theme "/home/tensai/.local/share/rofi/themes/rofi/launchers/type-1/style-10.rasi")
+
+if [[ -n "$cmd" ]]; then
+  # Run command in the current environment so PATH works
+  output=$($cmd 2>&1)
+
+  # Notify only if there is output
+  if [[ -n "$output" ]]; then
+    notify-send "$cmd" "$output" -i terminal
+  fi
+fi

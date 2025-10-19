@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Close all time widgets first
+eww close-all
+
+POSITION="$1"
+
+case "$POSITION" in
+tl)
+  eww open time_widget_top_left
+  ;;
+tr)
+  eww open time_widget_top_right
+  ;;
+bl)
+  eww open time_widget_bottom_left
+  ;;
+br)
+  eww open time_widget_bottom_right
+  ;;
+c)
+  eww open time_widget_center
+  ;;
+*)
+  echo "Usage: $0 {tl|tr|bl|br|c}"
+  exit 1
+  ;;
+esac

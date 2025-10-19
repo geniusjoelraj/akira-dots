@@ -1,8 +1,6 @@
-
 {
   // Workspaces
-  
-"hyprland/workspaces": {
+  "hyprland/workspaces": {
     "rotate": 0,
     "all-outputs": true,
     "active-only": false,
@@ -12,38 +10,37 @@
     "on-scroll-down": "hyprctl dispatch workspace +1",
     "format": "{icon}",
     "persistent-workspaces": {
-        "*": 0
-        },
-        "format-icons": {
-            "1": "一",
-            "2": "二",
-            "3": "三",
-            "4": "四",
-            "5": "五",
-            "6": "六",
-            "7": "七",
-            "8": "八",
-            "9": "九",
-            "10": "十",
-            "11": "十一",
-            "12": "十二",
-            "13": "十三",
-            "14": "十四",
-            "15": "十五",
-            "16": "十六",
-            "17": "十七",
-            "18": "十八",
-            "19": "十九",
-            "20": "二十",
-            "urgent": "",
-            "focused": "",
-            "default": " "
+      "*": 0
     },
-},  // Hyprland Window
+    "format-icons": {
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "10": "十",
+      "11": "十一",
+      "12": "十二",
+      "13": "十三",
+      "14": "十四",
+      "15": "十五",
+      "16": "十六",
+      "17": "十七",
+      "18": "十八",
+      "19": "十九",
+      "20": "二十",
+      "urgent": "",
+      "focused": "",
+      "default": " "
+    },
+  }, // Hyprland Window
   "hyprland/window": {
-    "max-length": 30,    
- },
-
+    "max-length": 30,
+  },
   // Rofi Application Launcher
   "custom/appmenu": {
     "format": "󰣇",
@@ -52,7 +49,6 @@
     "on-click-right": "~/.config/notscripter/scripts/keybindings.sh",
     "tooltip": false
   },
-
   // Power Menu
   "custom/exit": {
     "format": "",
@@ -60,7 +56,14 @@
     "on-click": "wlogout -b 4",
     "tooltip": false
   },
-
+  "custom/spotify": {
+    "format": " {}",
+    "exec": "playerctl -p spotifyd metadata --format '{{ artist }} - {{ title }}'",
+    "interval": 0.1,
+    "on-click-middle": "playerctl -p spotifyd play-pause",
+    "on-click": "playerctl -p spotifyd previous",
+    "on-click-right": "playerctl -p spotifyd next"
+  },
   "mpris": {
     "player": "spotify",
     "on-click": "playerctl previous --player spotify",
@@ -74,11 +77,8 @@
     "format": " {title} - {artist}",
     "on-scroll-up": "~/.scripts/vol_app.sh spotify up",
     "on-scroll-down": "~/.scripts/vol_app.sh spotify down",
-
-
     //"dynamic-order": ["album", "length"]
   },
-
   "custom/notification": {
     "tooltip": false,
     //"format": "{} {icon}",
@@ -101,7 +101,6 @@
     "on-click-right": "swaync-client -d -sw",
     "escape": true
   },
-
   // Keyboard State
   "keyboard-state": {
     "numlock": true,
@@ -112,7 +111,6 @@
       "unlocked": ""
     }
   },
-
   // System tray
   "tray": {
     "icon-size": 14,
@@ -121,7 +119,7 @@
   "mpd": {
     "max-length": 40,
     "tooltip": false,
-    "format-paused":"󰏤 {title} - {artist}",
+    "format-paused": "󰏤 {title} - {artist}",
     "format-stopped": "  rmpc",
     "format": " {title} - {artist}",
     "on-click-right": "mpc next",
@@ -134,72 +132,63 @@
     "format": "󰈹",
     "on-scroll-up": "~/.scripts/vol_app.sh Firefox up",
     "on-scroll-down": "~/.scripts/vol_app.sh Firefox down",
-    
   },
   "custom/zen": {
     "format": "󰰷 ",
     "on-scroll-up": "~/.scripts/vol_app.sh Zen up",
     "on-scroll-down": "~/.scripts/vol_app.sh Zen down",
-    
   },
   "custom/accent": {
     "format": "",
-    "on-click": "~/.scripts/accent_change.sh"
+    "tooltip": false,
+    "menu": "on-click",
+    "menu-file": "~/.config/waybar/accent.xml",
+    "menu-actions": {
+      "rosewater": "~/.scripts/accent_change rosewater",
+      "flamingo": "~/.scripts/accent_change flamingo",
+      "pink": "~/.scripts/accent_change pink",
+      "mauve": "~/.scripts/accent_change mauve",
+      "red": "~/.scripts/accent_change red",
+      "maroon": "~/.scripts/accent_change maroon",
+      "peach": "~/.scripts/accent_change peach",
+      "yellow": "~/.scripts/accent_change yellow",
+      "green": "~/.scripts/accent_change green",
+      "teal": "~/.scripts/accent_change teal",
+      "sky": "~/.scripts/accent_change sky",
+      "sapphire": "~/.scripts/accent_change sapphire",
+      "blue": "~/.scripts/accent_change blue",
+      "lavender": "~/.scripts/accent_change lavender"
+    }
   },
-
- // "cava": { //"cava_config": "~/.config/cava/config",
-   //    "framerate": 30,
-   //    "autosens": 1,
-   //    "sensitivity": 100,
-   //    "bars": 12,
-   //    "lower_cutoff_freq": 50,
-   //    "higher_cutoff_freq": 10000,
-   //    "method": "pipewire",
-   //    "source": "mpd",
-   //    "stereo": true,
-   //    "reverse": false,
-   //    "bar_delimiter": 0,
-   //    "monstercat": false,
-   //    "waves": false,
-   //    "noise_reduction": 0.77,
-   //    "input_delay": 2,
-   //    "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
-   //    "actions": {
-   //               "on-click-right": "mode"
-   //               }
-   //},
-
-  // Clock
- "clock": {
-	"format": "{:%I:%M %p}",
-	"format-alt": "{:%A, %B %d, %Y}",
-	//"tooltip-format": "<tt><small>{calendar}</small></tt>",
-  "tooltip": false,
-	"calendar": {
-		"mode"          : "month",
-		"mode-mon-col"  : 3,
-		"weeks-pos"     : "right",
-		"on-scroll"     : 1,
-		"on-click-right": "mode",
-		"format": {
-			"months":     "<span color='#ffead3'><b>{}</b></span>",
-			"days":       "<span color='#ecc6d9'><b>{}</b></span>",
-			"weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
-			"today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
-		}
-	},
-	//"actions": {
-	//	"on-click-right": "mode",
-	//	"on-click-forward": "tz_up",
-	//	"on-click-backward": "tz_down",
-	//	"on-scroll-up": "shift_up",
-	//	"on-scroll-down": "shift_down"
-	//}
-},
+  "clock": {
+    "format": "{:%I:%M %p}",
+    "format-alt": "{:%A, %B %d, %Y}",
+    //"tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "tooltip": false,
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    },
+    //"actions": {
+    //	"on-click-right": "mode",
+    //	"on-click-forward": "tz_up",
+    //	"on-click-backward": "tz_down",
+    //	"on-scroll-up": "shift_up",
+    //	"on-scroll-down": "shift_down"
+    //}
+  },
   "hyprland/language": {
     "format": "/ K {short}"
   },
-
   // Network
   "network": {
     "tooltip": false,
@@ -215,7 +204,6 @@
     "interval": 1,
     "on-click": "nm-connection-editor"
   },
-
   // Battery
   "battery": {
     "states": {
@@ -229,48 +217,73 @@
     "format-alt": "{icon} {capacity}%",
     // "format-good": "", // An empty format will hide the module
     // "format-full": "",
-    "format-icons": [" ", " ", " ", " ", " "]
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ]
   },
-    "cava": {
-//        "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
-        "framerate": 30,
-        "autosens": 1,
-        "sensitivity": 100,
-        "bars": 14,
-        "lower_cutoff_freq": 50,
-        "higher_cutoff_freq": 10000,
-        "method": "pulse",
-        "source": "auto",
-        "stereo": true,
-        "reverse": false,
-        "bar_delimiter": 0,
-        "monstercat": false,
-        "waves": false,
-        "noise_reduction": 0.77,
-        "input_delay": 2,
-        "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
-        "actions": {
-                   "on-click-right": "mode"
-                   }
-    },
+  "cava": {
+    //        "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
+    "framerate": 30,
+    "autosens": 1,
+    "sensitivity": 100,
+    "bars": 14,
+    "lower_cutoff_freq": 50,
+    "higher_cutoff_freq": 10000,
+    "method": "pulse",
+    "source": "auto",
+    "stereo": true,
+    "reverse": false,
+    "bar_delimiter": 0,
+    "monstercat": false,
+    "waves": false,
+    "noise_reduction": 0.77,
+    "input_delay": 2,
+    "format-icons": [
+      "▁",
+      "▂",
+      "▃",
+      "▄",
+      "▅",
+      "▆",
+      "▇",
+      "█"
+    ],
+    "actions": {
+      "on-click-right": "mode"
+    }
+  },
   // Bluetooth
   "bluetooth": {
     "format-disabled": "󰂲",
     "format-connected": " ",
-    "format-icons": ["󰥇", "󰤾", "󰤿", "󰥀", "󰥁", "󰥂", "󰥃", "󰥄", "󰥅", "󰥆", "󰥈"],
+    "format-icons": [
+      "󰥇",
+      "󰤾",
+      "󰤿",
+      "󰥀",
+      "󰥁",
+      "󰥂",
+      "󰥃",
+      "󰥄",
+      "󰥅",
+      "󰥆",
+      "󰥈"
+    ],
     "format-off": "",
     "interval": 30,
     "on-click": "blueman-manager",
     "format-no-controller": ""
   },
-
   // Other
   "user": {
     "format": "{user}",
     "interval": 60,
     "icon": true
   },
-
   // Idle Inhibator
   "idle_inhibitor": {
     "format": "{icon} ",
@@ -279,18 +292,19 @@
       "activated": "󰅶",
       "deactivated": "󰾪"
     },
+    "start-activated": true
   },
   "power-profiles-daemon": {
-  "format": "{icon}",
-  "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-  "tooltip": false,
-  "format-icons": {
-    "default": "",
-    "performance": " ",
-    "balanced": " ",
-    "power-saver": " "
-  }
-},
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": false,
+    "format-icons": {
+      "default": "",
+      "performance": " ",
+      "balanced": " ",
+      "power-saver": " "
+    }
+  },
   "custom/wallpaper": {
     "format": "🖼️ {}",
     "max-length": 25,

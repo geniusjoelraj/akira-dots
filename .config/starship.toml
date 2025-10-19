@@ -173,6 +173,7 @@ symbol = "󰟔 "
 
 [ruby]
 symbol = " "
+disabled = true
 
 [rust]
 symbol = "󱘗 "

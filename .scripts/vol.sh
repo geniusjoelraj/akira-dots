@@ -17,7 +17,7 @@ function set_volume {
 function send_notification {
   vol_float=$(get_volume)
   vol_int=$(echo "$vol_float * 100 / 1" | bc)
-  filled=$(($vol_int / 3))
+  filled=$(($vol_int / 4))
   bar=$(printf '󰝤%.0s' $(seq 1 $filled))
   notify-send "Volume: $vol_int%" "$bar" -r 5 -i "audio-volume-high-symbolic" -t 1000
 }

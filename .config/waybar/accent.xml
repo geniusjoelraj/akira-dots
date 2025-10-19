@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkMenu" id="menu">
+    <child>
+		<object class="GtkMenuItem" id="rosewater">
+			<property name="label">rosewater</property>
+		</object>
+    </child>
+    <child>
+		<object class="GtkMenuItem" id="flamingo">
+			<property name="label">flamingo</property>
+		</object>
+    </child>
+    <child>
+		<object class="GtkMenuItem" id="pink">
+			<property name="label">pink</property>
+		</object>
+    </child>
+    <child>
+		<object class="GtkMenuItem" id="mauve">
+			<property name="label">mauve</property>
+		</object>
+    </child>
+    <child>
+		<object class="GtkMenuItem" id="red">
+			<property name="label">red</property>
+		</object>
+    </child>
+    <child>
+		<object class="GtkMenuItem" id="maroon">
+			<property name="label">maroon</property>
+		</object>
+    </child>
+    <child>
+		<object class="GtkMenuItem" id="peach">
+			<property name="label">peach</property>
+		</object>
+    </child>
+    <child>
+		<object class="GtkMenuItem" id="yellow">
+			<property name="label">yellow</property>
+		</object>
+    </child>
+    <child>
+		<object class="GtkMenuItem" id="green">
+			<property name="label">green</property>
+		</object>
+    </child>
+    <child>
+		<object class="GtkMenuItem" id="teal">
+			<property name="label">teal</property>
+		</object>
+    </child>
+    <child>
+		<object class="GtkMenuItem" id="sky">
+			<property name="label">sky</property>
+		</object>
+    </child>
+    <child>
+		<object class="GtkMenuItem" id="sapphire">
+			<property name="label">sapphire</property>
+		</object>
+    </child>
+    <child>
+		<object class="GtkMenuItem" id="blue">
+			<property name="label">blue</property>
+		</object>
+    </child>
+    <child>
+		<object class="GtkMenuItem" id="lavender">
+			<property name="label">lavender</property>
+		</object>
+    </child>
+  </object>
+</interface>

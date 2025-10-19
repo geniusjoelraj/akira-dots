@@ -1,0 +1,11 @@
+
+(defpoll TIME :interval "5s" "date +\"%I:%M %p\"")
+(defpoll DAY :interval "5s" "date +\"%A\"")
+
+(defwidget time []
+  (box :class "time_widget" :orientation "v" :space-evenly false :vexpand false :hexpand false :spacing 0
+    (label :class "time_hour" :text TIME )
+    (label :class "time_day" :text DAY )
+  )
+)
+

@@ -18,7 +18,8 @@ declare -A color_dict=(
   [lavender]="b4befe"
 )
 
-color=$(echo $colors | tr ',/' '\n' | tofi --prompt-text=" colors ")
+# color=$(echo $colors | tr ',/' '\n' | tofi --prompt-text=" colors ")
+color=$1
 hexcode=${color_dict[$color]}
 if [[ $color ]]; then
   echo "@define-color accent #$hexcode;" >"$HOME/.config/waybar/accent.css"
@@ -29,4 +30,18 @@ if [[ $color ]]; then
   col.inactive_border = rgba(${hexcode}55)
 }" >"$HOME/.config/hypr/colors.conf"
 
+  echo "
+element selected.normal {
+    background-color:            #${hexcode};
+}
+" >"$HOME/.config/rofi/accent.rasi"
+
+  echo ".notification.low,
+.notification.normal {
+  border-left: 9px solid #${hexcode};
+}" >"$HOME/.config/swaync/accent.css"
+
+  echo "\$accent: #${hexcode};" >"$HOME/.config/eww/accent.scss"
+
+  swaync-client --reload-css
 fi

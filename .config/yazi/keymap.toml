@@ -369,7 +369,14 @@ on   = "l"
 run  = "plugin smart-enter"
 desc = "Enter the child directory, or open the file"
 
+
 [[mgr.prepend_keymap]]
 on   = "<RIGHT>"
 run  = "plugin smart-enter"
 desc = "Enter the child directory, or open the file"
+
+
+[[mgr.prepend_keymap]]
+on = ["s", "w"]
+run = 'shell -- swww img "$0"  --transition-type wipe'
+desc = "Set hovered image as wallpaper (swww)"

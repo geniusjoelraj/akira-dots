@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+word=$(rofi -dmenu -theme "/home/tensai/.local/share/rofi/themes/rofi/launchers/type-1/style-10.rasi")
+echo $word
+meaning=$(jisho-cli -r $word | head -n 3 | sed 's/[[:blank:]]//g')
+echo $meaning
+title=$(echo $meaning | head -n 1)
+echo $title
+notify-send "$title" "$meaning"

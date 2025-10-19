@@ -18,7 +18,7 @@ declare -A color_dict=(
   [lavender]="b4befe"
 )
 
-color=$(echo $colors | tr ',' '\n' | fzf)
+color=$(echo $colors | tr ',' '\n' | rofi -dmenu)
 hexcode=${color_dict[$color]}
 if [[ $color ]]; then
   echo "@define-color accent #$hexcode;" >"$HOME/.config/waybar/accent.css"

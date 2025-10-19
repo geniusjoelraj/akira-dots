@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Get current volume (PulseAudio)
+VOLUME=$(pamixer --get-volume)
+MUTE=$(pamixer --get-mute)
+
+# Show icon based on mute
+if [ "$MUTE" = "true" ]; then
+  ICON="" # Font Awesome muted icon
+else
+  ICON="" # Volume icon
+fi
+
+# Show notification (replace dunstify with notify-send if needed)
+dunstify -r 2593 -u normal "$ICON $VOLUME%" -h int:value:"$VOLUME" -t 1000

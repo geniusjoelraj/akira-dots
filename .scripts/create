@@ -1,0 +1,116 @@
+#!/usr/bin/env bash
+
+# --- CONFIGURATION ---
+
+# 1. Define the cache directory for the background-removed image
+CACHE_DIR="/tmp/rembg_cache"
+# 2. Define the path to your text overlay image (keep this fixed)
+TEXT_OVERLAY_IMAGE="/home/tensai/Downloads/theming/text.png"
+# 3. Define the final output filename
+OUTPUT_FILE="/home/tensai/.wall/output.png"
+# 4. ***SCALING FACTOR: Apply to the text overlay image only.***
+#    1.0 is original size. 1.5 is 50% larger. Adjust this value!
+TEXT_SCALE_FACTOR=1
+
+# --- VALIDATION ---
+# ... (Validation code remains the same)
+
+if [ -z "$1" ]; then
+  echo "ERROR: No input image file provided."
+  echo "Usage: $0 <path/to/your/input_image.png>"
+  exit 1
+fi
+
+INPUT_IMAGE="$1"
+BASE_BG_IMAGE="$1"
+
+if [ ! -f "$INPUT_IMAGE" ]; then
+  echo "ERROR: Input file not found: $INPUT_IMAGE"
+  exit 1
+fi
+
+TEXT_OVERLAY_EXISTS=1
+if [ ! -f "$TEXT_OVERLAY_IMAGE" ]; then
+  echo "WARNING: Text overlay image not found: $TEXT_OVERLAY_IMAGE. Compositing without it."
+  TEXT_OVERLAY_EXISTS=0
+fi
+
+# --- PROCESSING ---
+
+echo "Starting image processing..."
+mkdir -p "$CACHE_DIR"
+CACHED_IMAGE="$CACHE_DIR/$(basename "${INPUT_IMAGE%.*}.png")"
+
+echo "1. Removing background from $INPUT_IMAGE and saving to $CACHED_IMAGE..."
+rembg i "$INPUT_IMAGE" "$CACHED_IMAGE"
+
+if [ $? -ne 0 ]; then
+  echo "ERROR: rembg command failed. Check if 'rembg' is installed and working."
+  exit 1
+fi
+
+# --- RESIZING & PADDING SECTION ---
+
+echo "2. Preparing layers for composite..."
+
+# Get the resolution of the Base Background Image ($1)
+TARGET_SIZE=$(magick identify -format '%wx%h' -ping "$BASE_BG_IMAGE")
+BASE_WIDTH=$(magick identify -format '%w' -ping "$BASE_BG_IMAGE")
+BASE_HEIGHT=$(magick identify -format '%h' -ping "$BASE_BG_IMAGE")
+
+if [ -z "$TARGET_SIZE" ]; then
+  echo "ERROR: Could not determine resolution of $BASE_BG_IMAGE."
+  exit 1
+fi
+
+# Create temporary files for the processed overlays
+RESIZED_CACHED_IMAGE="$CACHE_DIR/processed_$(basename "${CACHED_IMAGE}")"
+RESIZED_TEXT_IMAGE="$CACHE_DIR/processed_$(basename "${TEXT_OVERLAY_IMAGE%.*}.png")"
+
+# 2a. Process the cached (BG-removed) image (Subject should NOT scale up):
+# This ensures the subject remains at its original scale relative to the photo
+magick "$CACHED_IMAGE" -resize "$TARGET_SIZE!" -background none -gravity center -extent "$TARGET_SIZE" "$RESIZED_CACHED_IMAGE"
+
+# 2b. Resize the text overlay image (Text SHOULD scale up):
+if [ "$TEXT_OVERLAY_EXISTS" -eq 1 ]; then
+  # Calculate the new size for the text based on the SCALE_FACTOR
+  NEW_WIDTH=$(echo "($BASE_WIDTH * $TEXT_SCALE_FACTOR) / 1" | bc)
+  NEW_HEIGHT=$(echo "($BASE_HEIGHT * $TEXT_SCALE_FACTOR) / 1" | bc)
+  SCALED_TEXT_SIZE="${NEW_WIDTH}x${NEW_HEIGHT}"
+
+  # Resize the text to the SCALED size, then pad it out to the full TARGET_SIZE canvas.
+  magick "$TEXT_OVERLAY_IMAGE" -resize "$SCALED_TEXT_SIZE!" -background none -gravity center -extent "$TARGET_SIZE" "$RESIZED_TEXT_IMAGE"
+fi
+
+# --- COMPOSITING SECTION ---
+# ... (This section remains unchanged as the layering order is correct)
+
+# Start with the Base Image (bottom layer)
+MAGICK_COMMAND="magick \"$BASE_BG_IMAGE\""
+
+# LAYER 2: Overlay the Text (middle layer) - uses SCALED size
+if [ "$TEXT_OVERLAY_EXISTS" -eq 1 ]; then
+  MAGICK_COMMAND="$MAGICK_COMMAND \"$RESIZED_TEXT_IMAGE\" -gravity center -composite"
+fi
+
+# LAYER 3: Overlay the BG-Removed Image (top layer) - uses original size
+MAGICK_COMMAND="$MAGICK_COMMAND \"$RESIZED_CACHED_IMAGE\" -gravity center -composite"
+
+# Add the final output file
+MAGICK_COMMAND="$MAGICK_COMMAND \"$OUTPUT_FILE\""
+
+# Execute the final command
+eval $MAGICK_COMMAND
+
+if [ $? -ne 0 ]; then
+  echo "ERROR: ImageMagick command failed. Check your paths and syntax."
+  exit 1
+fi
+
+echo "✅ Success! Final image saved as: $OUTPUT_FILE"
+
+# Clean up temporary processed files
+rm "$RESIZED_CACHED_IMAGE"
+if [ "$TEXT_OVERLAY_EXISTS" -eq 1 ]; then
+  rm "$RESIZED_TEXT_IMAGE"
+fi
