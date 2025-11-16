@@ -7,21 +7,28 @@
 (deflisten player_status :initial "Stopped"
 "playerctl metadata -p spotify --format {{status}} --follow || echo 'Stopped'")
 
+
+(defpoll spotify-position :interval "1s"
+  "spotifycli --position")
+
 (defpoll cover_art_path :interval "5s" 
 "~/.scripts/get_spotify_art.sh")
 
 (defwidget music-widget []
-  (box :class "music-widget" :orientation "h" :space-evenly false :hexpand false :vexpand: false :border-radius 10 :valign "center" :halign "center"
+  (box :class "music-widget" :orientation "h" :space-evenly false :hexpand false :vexpand: false :valign "center" :halign "center"
     (box :class "cover-art" :style "background-image: url('${cover_art_path}');")
     (box :class "music-info" :orientation "v" :space-evenly false :halign "center" :valign "center" :width 200 :height 100 
-    (box :orientation "v" :halign: "center" :valign "center"
+    (box :orientation "v" :valign "center"
       (label :class "song-title" :text song_title )
       (label :class "artist" :text song_artist )
     )
+      ;;(label :class "position" :text spotify-position )
       (box :class "controls" :orientation "h" :halign: "center" :valign "center" :width 200 :hexpand false :vexpand false :space-evenly false
+        ;;(button :onclick "spotify_player playback shuffle" "")
         (button :onclick "playerctl previous -p spotify" "")
         (button :onclick "playerctl play-pause -p spotify" {player_status == "Playing" ? "" : ""})
         (button :onclick "playerctl next -p spotify" "")
+        ;;(button :onclick "spotify_player like" "")
        )
       
     )

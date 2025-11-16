@@ -224,12 +224,13 @@ $font-family: "JetBrains Mono Nerd Font";
   // border: 2px solid $accent;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   border-radius: 15px;
+  min-width: 200px;
 }
 
 .cover-art {
   background-size: cover;
   background-position: center;
-  min-width: 70px;
+  min-width: 80px;
   min-height: 40px;
   border-radius: 5px;
   margin-right: 5px;
@@ -265,16 +266,18 @@ $font-family: "JetBrains Mono Nerd Font";
   margin-bottom: -10px;
   margin-top: -5px;
   margin-left: 65px;
+  // margin-left: 37px;
 }
 
 .controls button {
   background: none;
-  margin-right: 10px;
   border: none;
   color: #cdd6f4;
+  margin: 0 5px;
   &:nth-child(2) {
     font-size: 32px;
   }
+  
  }
 
  .time_hour {
@@ -285,9 +288,43 @@ $font-family: "JetBrains Mono Nerd Font";
  }
 
 
-
  .time_day {
    font-size: 150px;
    font-family: "NDOT 45 (inspired by NOTHING)";
    color: #cdd6f4;
  }
+
+ .position {
+   font-size: 13px;
+ }
+
+ .battery-warning {
+   background-color: rgba(0,0,0,0.5);
+   padding: 380px 650px;
+ }
+
+ .dialogue-box{
+   background-color: #11111B;
+   border: #F38BA8 solid 3px;
+   border-radius: 10px;
+   padding: 20px;
+   min-height: 80px;
+   min-width: 250px;
+ }
+
+.warning {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.confirm-button {
+  font-size: 16px;
+  color: #fff;
+  background-color: #313244;
+  border-radius: 10px;
+  margin: 0 60px;
+}
+
+.confirm-button:hover {
+    background-color: #fff;
+}

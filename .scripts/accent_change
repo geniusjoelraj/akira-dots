@@ -23,6 +23,7 @@ color=$1
 hexcode=${color_dict[$color]}
 if [[ $color ]]; then
   echo "@define-color accent #$hexcode;" >"$HOME/.config/waybar/accent.css"
+  # killall -SIGUSR2 waybar
   echo "@define-color accent #$hexcode;" >"$HOME/.config/wlogout/accent.css"
 
   echo "general{ 
@@ -31,17 +32,20 @@ if [[ $color ]]; then
 }" >"$HOME/.config/hypr/colors.conf"
 
   echo "
-element selected.normal {
-    background-color:            #${hexcode};
+* {
+    accent:            #${hexcode};
 }
 " >"$HOME/.config/rofi/accent.rasi"
 
-  echo ".notification.low,
-.notification.normal {
-  border-left: 9px solid #${hexcode};
-}" >"$HOME/.config/swaync/accent.css"
+  #   echo ".notification.low,
+  # .notification.normal {
+  #   border-left: 9px solid #${hexcode};
+  # }" >"$HOME/.config/swaync/accent.css"
 
   echo "\$accent: #${hexcode};" >"$HOME/.config/eww/accent.scss"
 
-  swaync-client --reload-css
+  echo "border-color=#${hexcode}" >"$HOME/.config/mako/accent"
+  makoctl reload
+
+  # swaync-client --reload-css
 fi

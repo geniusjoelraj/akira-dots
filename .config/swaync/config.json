@@ -29,6 +29,12 @@
   "hide-on-action": true,
   "text-empty": " ",
   "script-fail-notify": true,
+  "notification-actions": {
+    "default-action": {
+      "exec": "hyprctl dispatch focuswindow class:$SWAYNC_APP_NAME",
+      "run-on": "action" 
+    }
+  },
   "notification-visibility": {
     "example-name": {
       "state": "enabled",

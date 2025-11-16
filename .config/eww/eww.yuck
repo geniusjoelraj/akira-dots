@@ -1,7 +1,8 @@
 (include "/home/tensai/.config/eww/calendar/eww.yuck")
-(include "/home/tensai/.config/eww/profile_stats/eww.yuck")
+;;(include "/home/tensai/.config/eww/profile_stats/eww.yuck")
 (include "/home/tensai/.config/eww/music_player/eww.yuck")
 (include "/home/tensai/.config/eww/time/eww.yuck")
+(include "/home/tensai/.config/eww/battery-warning/eww.yuck")
 
 ;;================ calendar ==================
 
@@ -121,4 +122,15 @@
 )
 
 
+(defwindow battery 
+  :stacking "fg"
+  :monitor 0
+  :geometry (
+    geometry :y "0px"
+             :x "0px"
+             :width "500px"
+             :height "500px"
+  )
+  (battery-warning)
+)
 

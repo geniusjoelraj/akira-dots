@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-notify-send "Time for a Break!" "45 minutes is up"
-sleep 45m
+while true; do
+  notify-send "Reminder" "20 minutes have passed!"
+  sleep 1200 # 1200 seconds = 20 minutes
+done

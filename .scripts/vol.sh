@@ -17,9 +17,9 @@ function set_volume {
 function send_notification {
   vol_float=$(get_volume)
   vol_int=$(echo "$vol_float * 100 / 1" | bc)
-  filled=$(($vol_int / 4))
+  filled=$(($vol_int / 3))
   bar=$(printf '󰝤%.0s' $(seq 1 $filled))
-  notify-send "Volume: $vol_int%" "$bar" -r 5 -i "audio-volume-high-symbolic" -t 1000
+  notify-send "Volume: $vol_int%" "$bar" -r 5 -i "/home/tensai/.icons/volume.png" -t 1000 -h string:x-canonical-private-synchronous:sys-notify
 }
 
 case $1 in
@@ -38,9 +38,9 @@ down)
 mute)
   wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
   if [ -n "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $3}')" ]; then
-    notify-send "Toggled mute" -r 5 -i "audio-volume-muted-symbolic" -t 1000
+    notify-send "Toggled mute" -r 5 -i "audio-volume-muted-symbolic" -t 1000 -h string:x-canonical-private-synchronous:sys-notify
   else
-    notify-send "Toggled mute" -r 5 -i "audio-volume-high-symbolic" -t 1000
+    notify-send "Toggled mute" -r 5 -i "audio-volume-high-symbolic" -t 1000 -h string:x-canonical-private-synchronous:sys-notify
   fi
   ;;
 *)

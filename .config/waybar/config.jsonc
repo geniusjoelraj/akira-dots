@@ -17,6 +17,7 @@
   /*------------
 		layout
 	------------*/
+"reload_style_on_change": true,
   "modules-left": [
     "custom/left_div#1",
     "hyprland/workspaces",
@@ -225,7 +226,9 @@
     },
     "min-length": 7,
     "max-length": 7,
-    "tooltip-format": "{used:0.1f} GB / {total:0.1f} GB"
+    "tooltip-format": "{used:0.1f} GB / {total:0.1f} GB",
+    "on-click": "kitty -e btop"
+
   },
   "cpu": {
     "interval": 10,
@@ -534,9 +537,9 @@
   },
   "mpris": {
     "player": "spotify",
-    "on-click": "playerctl previous --player spotify",
-    "on-click-middle": "playerctl play-pause --player spotify",
-    "on-click-right": "playerctl next --player spotify",
+    "on-click": "playerctl previous -p spotify",
+    "on-click-middle": "playerctl play-pause -p spotify",
+    "on-click-right": "playerctl next -p spotify",
     "icon-size": 12,
     "max-length": 40,
     "tooltip": false,

@@ -1,0 +1,10 @@
+(defwidget battery-warning []
+  (box :class "battery-warning" :orientation "h" :space-evenly false :hexpand false :vexpand: false :border-radius 10 :valign "center" :halign "center"
+    (box :class "dialogue-box" :orientation "v" :halign: "center" :valign "center"
+      (label :class "warning" :text "Battery critical" )
+      (box :class "confirm-button"
+      (button :onclick "eww close battery" "close" )
+      )
+    )
+  )
+)
