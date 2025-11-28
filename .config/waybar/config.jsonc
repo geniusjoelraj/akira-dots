@@ -1,37 +1,14 @@
 {
-  /*-------------------------------------------------------
-		NOTE:
-		Wildcard includes are broken after v0.14.0:
-		  - https://github.com/Alexays/Waybar/issues/4354
-		  - https://github.com/sejjy/mechabar/issues/31
-
-	"include": [
-		"~/.config/waybar/modules/*.jsonc",
-		"~/.config/waybar/modules/custom/*.jsonc",
-		"~/.config/waybar/modules/hyprland/*.jsonc",
-
-		// modules that are not included by default:
-		"~/.config/waybar/modules/extras/*.jsonc"
-	],
-	-------------------------------------------------------*/
-  /*------------
-		layout
-	------------*/
 "reload_style_on_change": true,
   "modules-left": [
     "custom/left_div#1",
     "hyprland/workspaces",
     "custom/right_div#1",
     "hyprland/window"
-    // "hyprland/window"
   ],
   "modules-center": [
-    // "hyprland/windowcount",
-    // "custom/left_div#2",
-    // "custom/left_div#3",
     "custom/left_div#4",
     "memory",
-    // "cpu",
     "custom/left_inv#1",
     "custom/left_div#5",
     "custom/distro",
@@ -40,54 +17,24 @@
     "idle_inhibitor",
     "clock#time",
     "custom/right_div#3"
-    // "clock#date",
-    // "network",
-    // "bluetooth",
-    // "custom/right_div#4",
-    // "temperature",
-    // "custom/right_div#5"
   ],
   "modules-right": [
     "mpris",
     "custom/left_div#6",
     "group/pulseaudio",
-    // "custom/left_div#7",
     "custom/left_div#8",
     "battery",
     "custom/left_inv#2",
-    "group/tray",
+    "group/tray"
   ],
-  /*-------------
-		options
-	-------------*/
   "layer": "top",
-  // "output":
   "position": "top",
   "height": 0,
   "width": 0,
   "margin": 0,
-  // "margin-top":
-  // "margin-left":
-  // "margin-bottom":
-  // "margin-right":
   "spacing": 0,
-  // "name":
   "mode": "dock",
-  // "start_hidden":
-  // "modifier-reset":
-  // "exclusive":
-  // "fixed-center":
-  // "passthrough":
-  // "ipc":
-  // "id":
   "reload_style_on_change": true,
-  /*-------------------------------------------------------------------
-		HINT:
-		See the modules directory for more per-module config options.
-	-------------------------------------------------------------------*/
-  /*------------------
-		modules-left
-	------------------*/
   "group/theme_switcher": {
     "orientation": "horizontal",
     "modules": [
@@ -110,19 +57,7 @@
     "format": "{}",
     "tooltip": false
   },
-  // "hyprland/workspaces": {
-  //   "format": "{icon}",
-  //   "format-icons": {
-  //     "active": "",
-  //     "default": ""
-  //   },
-  //   "persistent-workspaces": {
-  //     "*": 0
-  //   },
-  //   "on-scroll-up": "hyprctl dispatch workspace +1",
-  //   "on-scroll-down": "hyprctl dispatch workspace -1",
-  //   "cursor": true
-  "hyprland/workspaces": {
+    "hyprland/workspaces": {
     "rotate": 0,
     "all-outputs": true,
     "active-only": false,
@@ -192,9 +127,6 @@
     },
     "swap-icon-label": false
   },
-  /*--------------------
-		modules-center
-	--------------------*/
   "hyprland/windowcount": {
     "format": "[{}]",
     "swap-icon-label": false
@@ -247,7 +179,7 @@
   "custom/distro": {
     "format": "󰣇",
     "tooltip": false,
-    "on-click": "eww open profile --toggle && eww open clock --toggle && eww open uptime --toggle",
+    "on-click": "eww open profile --toggle && eww open clock --toggle && eww open uptime --toggle"
   },
   "idle_inhibitor": {
     "format": "{icon}",
@@ -259,20 +191,20 @@
     "max-length": 3,
     "tooltip-format-activated": "Keep Screen On: <span text_transform='capitalize'>{status}</span>",
     "tooltip-format-deactivated": "Keep Screen On: <span text_transform='capitalize'>{status}</span>",
-    "start-activated": false
+    "start-activated": true
   },
   "clock#time": {
-    "format": "{:%H:%M}",
-    "min-length": 5,
-    "max-length": 5,
+    "format": "{:%I:%M %p}",
+    "min-length": 10,
+    "max-length": 20,
     "tooltip": false,
     "tooltip-format": "Standard Time: {:%I:%M %p}",
     "on-click": "eww open calendar --toggle"
   },
   "clock#date": {
     "format": "󰸗 {:%m-%d}",
-    "min-length": 8,
-    "max-length": 8,
+    "min-length": 10,
+    "max-length": 20,
     "tooltip-format": "{calendar}",
     "calendar": {
       "mode": "month",
@@ -339,9 +271,6 @@
     "max-length": 2,
     "on-click": "kitty -e ~/.config/waybar/scripts/system-update.sh start"
   },
-  /*-------------------
-		modules-right
-	-------------------*/
   "group/pulseaudio": {
     "orientation": "horizontal",
     "modules": [
@@ -440,9 +369,6 @@
     "on-click": "kitty -e ~/.config/waybar/scripts/power-menu.sh",
     "tooltip-format": "Power Menu"
   },
-  /*-------------------
-		left dividers
-	-------------------*/
   "custom/left_div#1": {
     "format": "",
     "tooltip": false
@@ -483,9 +409,6 @@
     "format": "",
     "tooltip": false
   },
-  /*--------------------
-		right dividers
-	--------------------*/
   "custom/right_div#1": {
     "format": "",
     "tooltip": false
@@ -580,5 +503,5 @@
       "click-to-reveal": true,
       "transition-left-to-right": false
     }
-  },
+  }
 }

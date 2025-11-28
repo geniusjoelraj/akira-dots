@@ -1,5 +1,4 @@
 {
-  // Workspaces
   "hyprland/workspaces": {
     "rotate": 0,
     "all-outputs": true,
@@ -39,7 +38,7 @@
     },
   }, // Hyprland Window
   "hyprland/window": {
-    "max-length": 30,
+    "max-length": 30
   },
   // Rofi Application Launcher
   "custom/appmenu": {
@@ -114,7 +113,7 @@
   // System tray
   "tray": {
     "icon-size": 14,
-    "spacing": 8,
+    "spacing": 8
   },
   "mpd": {
     "max-length": 40,
@@ -160,7 +159,7 @@
       "lavender": "~/.scripts/accent_change lavender"
     }
   },
-  "clock": {
+  "clock#time": {
     "format": "{:%I:%M %p}",
     "format-alt": "{:%A, %B %d, %Y}",
     //"tooltip-format": "<tt><small>{calendar}</small></tt>",

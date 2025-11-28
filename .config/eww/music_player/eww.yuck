@@ -18,8 +18,8 @@
   (box :class "music-widget" :orientation "h" :space-evenly false :hexpand false :vexpand: false :valign "center" :halign "center"
     (box :class "cover-art" :style "background-image: url('${cover_art_path}');")
     (box :class "music-info" :orientation "v" :space-evenly false :halign "center" :valign "center" :width 200 :height 100 
-    (box :orientation "v" :valign "center"
-      (label :class "song-title" :text song_title )
+    (box :orientation "v" :halign: "center" :valign "center"
+      (label :class "song-title" :text song_title :limit-width 20 :show-truncated true )
       (label :class "artist" :text song_artist )
     )
       ;;(label :class "position" :text spotify-position )
