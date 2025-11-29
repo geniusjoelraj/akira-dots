@@ -1,6 +1,6 @@
-@import "styles/modules-left.css";
-@import "styles/modules-center.css";
-@import "styles/modules-right.css";
+/* @import "styles/modules-left.css"; */
+/* @import "styles/modules-center.css"; */
+/* @import "styles/modules-right.css"; */
 @import "theme.css";
 @import "accent.css";
 
@@ -9,34 +9,23 @@
   font-weight: bold;
   font-size: 15px;
   color: @main-fg;
+  padding: 1px 0;
 }
 
 /* main outline */
 
 window#waybar {
-  background-color: @outline;
+  background-color: transparent;
 }
 
 /* main background */
 
 window#waybar>box {
-  margin: 4px;
-  background-color: @main-bg;
+  margin: 5px;
+  margin-bottom: 0px;
+  /* background-color: @kanagawabg; */
 }
 
-/* hoverables */
-
-#custom-theme_switcher:hover,
-#idle_inhibitor:hover,
-#clock.date:hover,
-#network:hover,
-#bluetooth:hover,
-#custom-system_update:hover,
-#mpris:hover,
-#pulseaudio:hover,
-#wireplumber:hover {
-  color: @hover-fg;
-}
 
 /* states */
 
@@ -60,14 +49,6 @@ window#waybar>box {
   color: @charging;
 }
 
-/* dividers */
-
-#custom-left_div,
-#custom-left_inv,
-#custom-right_div,
-#custom-right_inv {
-  font-size: 23.1px;
-}
 
 /* buttons */
 
@@ -81,12 +62,15 @@ button:hover {
   color: @hover-fg;
 }
 
+tooltip, #power-profile-daemon, #workspaces, #window, #custom-accent, #memory, #clock, #mpris, #pulseaudio, #idle_inhibitor, #battery, #tray {
+  background-color: @kanagawabg;
+}
 /* tooltips */
 
 tooltip {
-  border: 2px solid @main-br;
-  border-radius: 10px;
-  background-color: @main-bg;
+  border: 2px solid @accent;
+  /* border-radius: 10px; */
+  background-color: @kanagawabg;
 }
 
 tooltip label {
@@ -111,12 +95,22 @@ tooltip decoration {
   color: #a6e3a1;
 }
 
-#hyprland-workspaces {
+#workspaces label{
   font-size: 10px;
 }
 
-#workspaces button.active {
-  font-size: 10px;
+#workspaces {
+  border-radius: 4px 0 0 4px;
+}
+
+#window {
+  padding-right: 10px;
+  border-radius: 0 4px 4px 0;
+}
+
+#workspaces .active label{
+  color: @accent;
+font-size: 12px;
 }
 
 #custom-notification {
@@ -143,4 +137,30 @@ tooltip decoration {
   margin-left: 10px;
   color: @accent;
   margin-right: 5px;
+}
+
+#memory {
+  border-radius: 4px 0 0 4px;
+}
+
+#mpris {
+  padding: 10px;
+  border-radius: 0 4px 4px 0;
+}
+
+#mpris:hover, #clock:hover, #pulseaudio:hover {
+  color: @accent;
+}
+
+#clock {
+  border-radius: 4px 0 0 4px;
+}
+
+r {
+  color: @accent;
+}
+
+#tray {
+  border-radius: 0 4px 4px 0;
+  padding-right: 5px;
 }

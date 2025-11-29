@@ -71,5 +71,11 @@
 			<property name="label">lavender</property>
 		</object>
     </child>
+    <child>
+		<object class="GtkMenuItem" id="kanagawa">
+			<property name="label">kanagawa</property>
+		</object>
+    </child>
+
   </object>
 </interface>

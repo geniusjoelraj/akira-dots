@@ -1,9 +1,16 @@
-$bg-1: #12121f;
-$bg-2: #171728;
-$bg-3: #1d1d2f;
-$bg-4: #222236;
-$bg-5: #29293f;
-$fg: #d4d7ff;
+// $bg-1: #12121f;
+// $bg-2: #171728;
+// $bg-3: #1d1d2f;
+// $bg-4: #222236;
+// $bg-5: #29293f;
+$bg-1: #1F1F28;
+$bg-2: #1F1F28;
+$bg-3: #1F1F28;
+$bg-4: #1F1F28;
+$bg-5: #1F1F28;
+
+// $fg: #d4d7ff;
+$fg: #DCD7BA;
 $grey-1: #4f5071;
 $grey-2: #595b7e;
 $grey-3: #63658b;
@@ -110,6 +117,7 @@ $red: #bd4277;
   color: rgba($fg, 1);
   border-radius: 12px;
   margin-top: -8px;
+  border: 1 solid rgba($fg,1);
 }
 
 .calendar_layout_box {
@@ -131,6 +139,7 @@ $red: #bd4277;
   border-radius: 10px;
   padding: 6px 20px;
   margin-top: 15px;
+  border: 1 solid rgba($fg,1);
 }
 
 
@@ -224,7 +233,7 @@ $font-family: "JetBrains Mono Nerd Font";
   // border: 2px solid $accent;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   border-radius: 15px;
-  min-width: 200px;
+  // min-width: 200px;
 }
 
 .cover-art {
@@ -260,13 +269,11 @@ $font-family: "JetBrains Mono Nerd Font";
 }
 
 .controls {
-  margin: 8px 0;
   font-size: 24px;
   min-width: 100px;
   margin-bottom: -10px;
   margin-top: -5px;
-  margin-left: 65px;
-  // margin-left: 37px;
+  margin-left: 55px;
 }
 
 .controls button {

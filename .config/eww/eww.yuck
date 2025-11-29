@@ -10,7 +10,7 @@
     :monitor 0
     :stacking "fg"
     :geometry (geometry
-		:x "46%"
+		:x "37%"
 		:y "0px"
         :width "15%"
     	:anchor "top left"
@@ -53,9 +53,9 @@
   :monitor 0
   :stacking "fg"
   :geometry (
-    geometry :x "1070px" 
-             :y "5px" 
-             :width "200px" 
+    geometry :x "10px" 
+             :y "720px" 
+             :width "300px" 
              :height "120px"
   )
   (music-widget)

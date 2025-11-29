@@ -61,3 +61,6 @@
 @define-color warning		@yellow;
 @define-color critical		@red;
 @define-color charging		@green;
+
+/* kanagawa */
+@define-color kanagawabg #1F1F28;

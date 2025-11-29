@@ -1,30 +1,17 @@
 {
 "reload_style_on_change": true,
   "modules-left": [
-    "custom/left_div#1",
     "hyprland/workspaces",
-    "custom/right_div#1",
     "hyprland/window"
   ],
   "modules-center": [
-    "custom/left_div#4",
-    "memory",
-    "custom/left_inv#1",
-    "custom/left_div#5",
-    "custom/distro",
-    "custom/right_div#2",
-    "custom/right_inv#1",
-    "idle_inhibitor",
     "clock#time",
-    "custom/right_div#3"
+    "mpris"
   ],
   "modules-right": [
-    "mpris",
-    "custom/left_div#6",
+    "memory",
     "group/pulseaudio",
-    "custom/left_div#8",
     "battery",
-    "custom/left_inv#2",
     "group/tray"
   ],
   "layer": "top",
@@ -34,7 +21,6 @@
   "margin": 0,
   "spacing": 0,
   "mode": "dock",
-  "reload_style_on_change": true,
   "group/theme_switcher": {
     "orientation": "horizontal",
     "modules": [
@@ -70,34 +56,16 @@
       "*": 0
     },
     "format-icons": {
-      "1": "一",
-      "2": "二",
-      "3": "三",
-      "4": "四",
-      "5": "五",
-      "6": "六",
-      "7": "七",
-      "8": "八",
-      "9": "九",
-      "10": "十",
-      "11": "十一",
-      "12": "十二",
-      "13": "十三",
-      "14": "十四",
-      "15": "十五",
-      "16": "十六",
-      "17": "十七",
-      "18": "十八",
-      "19": "十九",
-      "20": "二十",
-      "urgent": "",
-      "focused": "",
-      "default": " "
+      "urgent": " ",
+      "focused": " ",
+      "default": " ",
+      "active": " "
     }
   },
   "custom/accent": {
     "format": "",
-    "tooltip": false,
+    "tooltip": true,
+    "tooltip-format": "accent change",
     "menu": "on-click",
     "menu-file": "~/.config/waybar/accent.xml",
     "menu-actions": {
@@ -114,11 +82,13 @@
       "sky": "~/.scripts/accent_change sky",
       "sapphire": "~/.scripts/accent_change sapphire",
       "blue": "~/.scripts/accent_change blue",
-      "lavender": "~/.scripts/accent_change lavender"
+      "lavender": "~/.scripts/accent_change lavender",
+      "kanagawa": "~/.scripts/accent_change kanagawa"
     }
   },
   "hyprland/window": {
     "format": "{initialTitle}",
+    "tooltip": false,
     "rewrite": {
       "": "Desktop",
       "kitty": "Terminal",
@@ -460,16 +430,16 @@
   },
   "mpris": {
     "player": "spotify",
-    "on-click": "playerctl previous -p spotify",
+    "on-click": "eww open music-widget --toggle",
     "on-click-middle": "playerctl play-pause -p spotify",
     "on-click-right": "playerctl next -p spotify",
     "icon-size": 12,
-    "max-length": 40,
+    "max-length": 30,
     "tooltip": false,
     "justify": "center",
     "expand": true,
     "elipsis": "",
-    "min-length": 30,
+    "min-length": 20,
     "tooltip-format": "Title: {title} Artist: {artist}",
     "format-paused": "{title} - {artist}",
     "format": "{title} - {artist}",
@@ -478,8 +448,8 @@
   },
   "power-profiles-daemon": {
     "format": "{icon}",
-    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-    "tooltip": false,
+    "tooltip-format": "{profile}",
+    "tooltip": true,
     "format-icons": {
       "default": "",
       "performance": " ",
@@ -495,6 +465,7 @@
     "orientation": "horizontal",
     "modules": [
       "custom/menu-tray",
+      "idle_inhibitor",
       "custom/accent",
       "power-profiles-daemon",
       "tray"
